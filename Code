@@ -1,0 +1,33 @@
+import string
+from collections import Counter
+
+def text_analyzer(text):
+    # Removing punctuation
+    text = text.translate(str.maketrans('', '', string.punctuation))
+
+    # Splitting text into sentences
+    sentences = text.split('.')
+    sentences = [s.strip() for s in sentences if s.strip()]
+
+    # Splitting text into words
+    words = text.split()
+    words = [w.lower() for w in words]  # Converting to lowercase for case-insensitive counting
+
+    # Counting word frequency
+    word_frequency = Counter(words)
+
+    # Output results
+    print(f"Number of sentences: {len(sentences)}")
+    print(f"Number of words: {len(words)}")
+    print("Word frequency:")
+    for word, count in word_frequency.items():
+        print(f"{word}: {count}")
+
+# Sample text for analysis
+sample_text = """
+Hello there! How are you doing today? This is a simple text analysis program. It counts words, sentences, and calculates word frequency.
+It also works for multiple sentences.
+"""
+
+# Run the analysis on the sample text
+text_analyzer(sample_text)
